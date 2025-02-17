@@ -1,0 +1,3 @@
+C:/Users/Karina/Documents/C++/SpaceInvaders/build/CMakeFiles/MySFMLProject.dir
+C:/Users/Karina/Documents/C++/SpaceInvaders/build/CMakeFiles/ALL_BUILD.dir
+C:/Users/Karina/Documents/C++/SpaceInvaders/build/CMakeFiles/ZERO_CHECK.dir
