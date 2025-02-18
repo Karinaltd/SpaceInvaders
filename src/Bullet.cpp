@@ -4,8 +4,8 @@
 
 
 Bullet::Bullet(float x, float y) : speed(5.0f) {
-    sf::CircleShape bulletShape(5.0f);
-    bulletShape.setFillColor(sf::Color::Red);
+    bulletShape.setRadius(5.0f);
+    bulletShape.setFillColor(sf::Color::Green);
     bulletShape.setPosition(x, y);
 }
 

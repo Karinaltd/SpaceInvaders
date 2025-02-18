@@ -11,7 +11,8 @@ set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR})
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR})
 
 # Add the src folder as the source directory
-add_executable(MySFMLProject src/main.cpp src/Tank.cpp)
+file(GLOB_RECURSE SRC_FILES src/*.cpp)
+add_executable(MySFMLProject ${SRC_FILES})
 
 set(SFML_DIR "C:/SFML/lib/cmake/SFML")
 

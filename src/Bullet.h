@@ -10,6 +10,9 @@ public:
     void moveDown();
     void render(sf::RenderWindow &window);
 
+    int getXPos() { return bulletShape.getPosition().x; }
+    int getYPos() { return bulletShape.getPosition().y; }
+
 private:
     sf::CircleShape bulletShape;
     float speed;
