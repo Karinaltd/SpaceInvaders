@@ -136,7 +136,7 @@ void AlienSwarm::deleteDeadAliens() {
 }
 
 void AlienSwarm::speedUpAliens() {
-    stepDelay = stepDelay * 0.99;
+    stepDelay = stepDelay * 0.96;
 }
 
 bool AlienSwarm::checkBulletCollisions(std::vector<Bullet>& playerBullets, Player* player) {
