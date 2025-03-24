@@ -1,12 +1,15 @@
 #include "Player.h"
 #include "Tank.h"
 #include "Bullet.h"
+#include "Alien.h"
+#include "Game.h"
 #include "Constants.h"
 #include <iostream>
 
 
 Player::Player(){
-    this->health = 3;
+    lives = 3;
+    score = 0;
 }
 
 void Player::handleInput() {
@@ -27,3 +30,18 @@ void Player::handleInput() {
 void Player::render(sf::RenderWindow* window) {
     tank.render(window);
 }
+
+bool Player::checkHitByAlienBullets(std::vector<AlienBullet>& bullets) {
+    bool tankHit = false;
+    for (auto it = bullets.begin(); it != bullets.end(); ) {
+        if (it->getBulletShape().getGlobalBounds().intersects(tank.getTankShape().getGlobalBounds())) {
+            tankHit = true;
+            die();
+            it = bullets.erase(it);
+        } else {
+            ++it;
+        }
+    }
+    return tankHit;
+}
+

@@ -20,6 +20,7 @@ public:
     int getXPos() { return tankShape.getPosition().x; }
     int getYPos() { return tankShape.getPosition().y; }
     sf::RectangleShape getTankShape() { return tankShape; }
+    std::vector<Bullet>& getBullets() { return bullets; }
 
 private:
     sf::RectangleShape tankShape;

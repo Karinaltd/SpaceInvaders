@@ -23,7 +23,7 @@ void Tank::render(sf::RenderWindow* window) {
 }
 
 void Tank::shoot() {
-  if (shotClock.getElapsedTime().asSeconds() >= shotCooldown) {
+  if (shotClock.getElapsedTime().asSeconds() >= SHOT_COOLDOWN) {
     bullets.emplace_back(tankShape.getPosition().x + tankShape.getSize().x / 2, tankShape.getPosition().y);
     shotClock.restart();
   }
@@ -31,7 +31,7 @@ void Tank::shoot() {
 
 void Tank::updateBullets() {
   for (auto it = bullets.begin(); it != bullets.end(); ) {
-      it->moveUp();
+      it->move();
       if (it->getYPos() < 0) {
           it = bullets.erase(it); 
       } else {
