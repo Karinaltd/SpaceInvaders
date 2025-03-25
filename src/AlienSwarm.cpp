@@ -139,30 +139,55 @@ void AlienSwarm::speedUpAliens() {
     stepDelay = stepDelay * 0.96;
 }
 
-bool AlienSwarm::checkBulletCollisions(std::vector<Bullet>& playerBullets, Player* player) {
+// bool AlienSwarm::checkBulletCollisions(std::vector<Bullet>& playerBullets, Player* player) {
+//     bool hit = false;
+//     for (auto bulletIt = playerBullets.begin(); bulletIt != playerBullets.end(); ) {
+//         sf::FloatRect bulletBounds = bulletIt->getBulletShape().getGlobalBounds();
+//         for (auto& row : aliens) {
+//             for (auto& alien : row) {
+//                 if (!alien.isAlive()) continue;
+//                 if (bulletBounds.top + bulletBounds.height < alien.getYPos() ||
+//                     bulletBounds.top > alien.getYPos() + ALIEN_SIZE) {
+//                     continue;
+//                 }
+//                 if (bulletBounds.intersects(alien.getBounds())) {
+//                     alien.die();
+//                     player->increaseScore(10);
+//                     bulletIt = playerBullets.erase(bulletIt);
+//                     hit = true;
+//                     break;
+//                 }
+//             }
+//             if (hit) break; 
+//         }
+//         if (!hit) {
+//             ++bulletIt;
+//         }
+//     }
+//     return hit;
+// }
+
+bool AlienSwarm::checkBulletCollisions1(Bullet& bullet, Player* player) {
     bool hit = false;
-    for (auto bulletIt = playerBullets.begin(); bulletIt != playerBullets.end(); ) {
-        sf::FloatRect bulletBounds = bulletIt->getBulletShape().getGlobalBounds();
-        for (auto& row : aliens) {
-            for (auto& alien : row) {
-                if (!alien.isAlive()) continue;
-                if (bulletBounds.top + bulletBounds.height < alien.getYPos() ||
-                    bulletBounds.top > alien.getYPos() + ALIEN_SIZE) {
-                    continue;
-                }
-                if (bulletBounds.intersects(alien.getBounds())) {
-                    alien.die();
-                    player->increaseScore(10);
-                    bulletIt = playerBullets.erase(bulletIt);
-                    hit = true;
-                    break;
-                }
+    sf::FloatRect bulletBounds = bullet.getBulletShape().getGlobalBounds();
+    for (auto& row : aliens) {
+        for (auto& alien : row) {
+            if (!alien.isAlive()) continue;
+            if (bulletBounds.top + bulletBounds.height < alien.getYPos() ||
+                bulletBounds.top > alien.getYPos() + ALIEN_SIZE) {
+                continue;
             }
-            if (hit) break; 
+            if (bulletBounds.intersects(alien.getBounds())) {
+                alien.die();
+                player->increaseScore(10);
+                player->getTank().setBulletExists(false);
+                player->getTank().getBullet().setBulletShapePosition(-15, -15);
+                hit = true;
+                break;
+            }
         }
-        if (!hit) {
-            ++bulletIt;
-        }
+        if (hit) break; 
     }
+
     return hit;
 }

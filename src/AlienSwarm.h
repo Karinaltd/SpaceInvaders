@@ -16,7 +16,8 @@ public:
     void updateBullets();
     void deleteDeadAliens();
     std::vector<std::vector<Alien>>& getAliens () { return aliens; }
-    bool checkBulletCollisions(std::vector<Bullet>& playerBullets, Player* player);
+    //bool checkBulletCollisions(std::vector<Bullet>& playerBullets, Player* player);
+    bool checkBulletCollisions1(Bullet& playerBullet, Player* player);
     void speedUpAliens();
     std::vector<AlienBullet>& getBullets() { return bullets; }
     void renderAlienBullet(sf::RenderWindow* window);

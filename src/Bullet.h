@@ -13,6 +13,7 @@ public:
     int getXPos() { return bulletShape.getPosition().x; }
     int getYPos() { return bulletShape.getPosition().y; }
     sf::CircleShape getBulletShape() { return bulletShape; }
+    void setBulletShapePosition(float x, float y) { bulletShape.setPosition(x, y); }
 
 protected:
     sf::CircleShape bulletShape;

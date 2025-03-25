@@ -57,7 +57,7 @@ void Game::gameLoop() {
             alienSwarm->deleteDeadAliens();
         }
         player->handleInput();
-        player->getTank().updateBullets(); 
+        player->getTank().updateBullet(); 
         window.clear();
         render();
         window.display();
@@ -86,5 +86,5 @@ void Game::updateText(){
 }
 
 bool Game::checkCollisions() {
-    return(player->checkHitByAlienBullets(alienSwarm->getBullets()) || alienSwarm->checkBulletCollisions(player->getTank().getBullets(), player));
+    return(player->checkHitByAlienBullets(alienSwarm->getBullets()) || alienSwarm->checkBulletCollisions1(player->getTank().getBullet(), player));
 }

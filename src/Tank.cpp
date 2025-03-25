@@ -19,7 +19,7 @@ void Tank::moveRight() {
 
 void Tank::render(sf::RenderWindow* window) {
     window->draw(tankShape);
-    renderBullets(window); 
+    renderBullet(window); 
 }
 
 void Tank::shoot() {
@@ -29,19 +29,41 @@ void Tank::shoot() {
   }
 }
 
-void Tank::updateBullets() {
-  for (auto it = bullets.begin(); it != bullets.end(); ) {
-      it->move();
-      if (it->getYPos() < 0) {
-          it = bullets.erase(it); 
-      } else {
-          ++it;
-      }
+void Tank::shoot1() {
+  if (bulletExists == false) {
+    bullet = Bullet(tankShape.getPosition().x + tankShape.getSize().x / 2, tankShape.getPosition().y);
+    bulletExists = true;
   }
 }
 
-void Tank::renderBullets(sf::RenderWindow* window) {
-  for (auto& bullet : bullets) {
-      bullet.render(*window);
+// void Tank::updateBullets() {
+//   for (auto it = bullets.begin(); it != bullets.end(); ) {
+//       it->move();
+//       if (it->getYPos() < 0) {
+//           it = bullets.erase(it); 
+//       } else {
+//           ++it;
+//       }
+//   }
+// }
+
+void Tank::updateBullet() {
+  if (bulletExists == false) {
+    return;
   }
+  else if (bullet.getYPos() < -15) {
+    bulletExists = false; 
+  }else{
+    bullet.move();
+  }
+}
+
+// void Tank::renderBullets(sf::RenderWindow* window) {
+//   for (auto& bullet : bullets) {
+//       bullet.render(*window);
+//   }
+// }
+
+void Tank::renderBullet(sf::RenderWindow* window) {
+  bullet.render(*window);
 }

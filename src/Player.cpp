@@ -23,7 +23,7 @@ void Player::handleInput() {
         tank.moveRight();
     }
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
-        tank.shoot();
+        tank.shoot1();
     }
   }
 
